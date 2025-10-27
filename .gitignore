@@ -1,3 +1,11 @@
 notebooks/data
 notebooks/cifar_net.pth
 .ipynb_checkpoints/
+
+# Artefactos de Python generados
+__pycache__/
+*.pyc
+
+# Bases de datos SQLite generadas
+*.db
+*.db-journal

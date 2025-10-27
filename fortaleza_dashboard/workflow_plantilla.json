@@ -1,0 +1,80 @@
+{
+  "name": "Fortaleza Cósmica - Receptor de Órdenes del Dashboard",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "fortaleza-webhook",
+        "options": {}
+      },
+      "name": "Recibir Orden del Dashboard",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        300
+      ],
+      "webhookId": "fortaleza-webhook"
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "mensaje",
+              "value": "={{'Orden recibida del Agente ' + $json.body.agentId + ' (' + $json.body.agentRole + ') del Clan ' + $json.body.clan + '.'}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Procesar Orden",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        500,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "responseCode": 200,
+        "responseData": "={\n  \"status\": \"success\",\n  \"message\": \"Orden recibida para el agente \" + $json.body.agentId\n}"
+      },
+      "name": "Confirmar Recepción",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        750,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Recibir Orden del Dashboard": {
+      "main": [
+        [
+          {
+            "node": "Procesar Orden",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Procesar Orden": {
+      "main": [
+        [
+          {
+            "node": "Confirmar Recepción",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {},
+  "id": "1"
+}

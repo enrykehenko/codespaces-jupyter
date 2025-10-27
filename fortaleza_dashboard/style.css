@@ -1,0 +1,117 @@
+/* style.css - Manifiesto Estético de la Fortaleza Cósmica */
+
+:root {
+    --color-deep-space: #000428;
+    --color-nebula: #004e92;
+    --color-star: #ffffff;
+    --color-crystal: rgba(255, 255, 255, 0.1);
+    --color-crystal-border: rgba(200, 220, 255, 0.5);
+    --glow-color: rgba(173, 216, 230, 0.7); /* Light Blue Glow */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
+    color: var(--color-star);
+    background-color: var(--color-deep-space);
+    overflow: hidden;
+}
+
+#cosmic-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--color-deep-space), var(--color-nebula));
+    z-index: -1;
+}
+
+/* Simulación de estrellas */
+@keyframes twinkle {
+    0% { opacity: 0; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0; }
+}
+
+#dashboard {
+    padding: 2em;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 3em;
+    margin-bottom: 0;
+    text-shadow: 0 0 10px var(--glow-color);
+}
+
+header p {
+    font-size: 1.2em;
+    color: var(--color-crystal-border);
+    margin-top: 0.5em;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 2em auto;
+}
+
+.agent-crystal {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    background: var(--color-crystal);
+    border: 1px solid var(--color-crystal-border);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    /* Forma de cristal facetado (hexágono) */
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.agent-crystal:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 20px var(--glow-color), 0 0 30px var(--glow-color) inset;
+}
+
+.agent-id {
+    font-weight: bold;
+    font-size: 1.2em;
+    text-shadow: 0 0 5px var(--glow-color);
+}
+
+.agent-role {
+    font-size: 0.8em;
+    color: var(--color-crystal-border);
+    margin-top: 5px;
+}
+
+/* Animación para agente activo */
+.agent-crystal.active {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 20px var(--glow-color), 0 0 30px var(--glow-color) inset;
+    }
+    50% {
+        box-shadow: 0 0 35px var(--glow-color), 0 0 45px var(--glow-color) inset;
+    }
+    100% {
+        box-shadow: 0 0 20px var(--glow-color), 0 0 30px var(--glow-color) inset;
+    }
+}

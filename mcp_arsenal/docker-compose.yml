@@ -1,0 +1,29 @@
+# docker-compose.yml para el Arsenal de MCPs de la Fortaleza
+version: '3.8'
+
+services:
+  github-mcp-server:
+    # Imagen oficial del servidor MCP de GitHub.
+    # Es posible que el nombre/tag exacto de la imagen deba ser verificado.
+    image: ghcr.io/github/github-mcp-server:latest
+    container_name: fortaleza_github_mcp
+    restart: unless-stopped
+
+    environment:
+      # El Token de Acceso Personal de GitHub debe ser proporcionado en un archivo .env
+      - GITHUB_PAT=${GITHUB_PAT}
+      # Opcional: Ejecutar en modo de solo lectura por seguridad
+      - GITHUB_READ_ONLY=true
+
+    ports:
+      # El puerto por defecto del servidor MCP es 65432, lo mapeamos al host.
+      - "65432:65432"
+
+    volumes:
+      # Montamos el registro de habilidades para que sea accesible por el MCP.
+      # La ruta del host debe ser absoluta o relativa al docker-compose.yml
+      # Asumimos que este docker-compose.yml se ejecuta desde la raíz del proyecto.
+      - ./agente_vigia/habilidades.db:/data/habilidades.db:ro
+
+    # Se recomienda crear un archivo .env en el mismo directorio con el siguiente contenido:
+    # GITHUB_PAT=ghp_TuTokenDeGitHubAqui
