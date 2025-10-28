@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HenkoCorps - Panel de Control de Agentes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Panel de Control de Agentes</h1>
+        <div id="api-status" class="status-indicator-red">API Status</div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h2>Control de Flujo Delta-Omega</h2>
+            <div id="flow-control" class="control-section">
+                <textarea id="start-message-input" placeholder="Escribe el mensaje inicial para el flujo..."></textarea>
+                <button id="start-flow-btn">Iniciar Flujo Delta-Omega</button>
+                <div id="active-flows-container">
+                    <h3>Flujos Activos:</h3>
+                    <ul id="active-flows-list">
+                        <!-- Los flujos activos se insertarán aquí -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <h2>Control de Escritorios Virtuales (Binomios)</h2>
+            <div id="desktop-controls" class="control-section grid-container">
+                <!-- Los controles de los escritorios se generarán aquí -->
+            </div>
+        </div>
+
+        <div class="container">
+            <h2>Control de Canales de Audio (Agentes)</h2>
+            <div id="audio-controls" class="control-section grid-container">
+                <!-- Los controles de audio se generarán aquí -->
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>HenkoCorps Agent Orchestrator v0.1.0</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
